@@ -12,16 +12,6 @@ class DataLoader:
         pass
 
     @staticmethod
-    def test(path):
-        sample_img = tf.io.read_file(path)
-        sample_img = tf.io.decode_png(sample_img)
-        print(sample_img.shape)
-        # plt.figure()
-        # plt.imshow(sample_img)
-        # plt.show()
-        
-
-    @staticmethod
     def load_image(image_file):
         """Loading and splitting a single image using tf"""
         image = tf.io.read_file(image_file)
@@ -63,6 +53,28 @@ class DataLoader:
             stacked_image,
             size = [2, 512, 512, 3]
         )
+
+        return cropped_image[0], cropped_image[1]
+    
+    @staticmethod
+    def _normalize(input_image, real_image):
+        # Normalizing from 1 to -1
+        input_image = (input_image / 127.5) - 1
+        real_image = (real_image / 127.5) - 1
+
+        return input_image, real_image
+    
+    @staticmethod
+    @tf.function
+    def _random_jitter(cls, input_image, real_image):
+        input_image, real_image = cls._resize_image(input_image, real_image, 542, 542)
+        input_image, real_image = cls._random_crop(input_image, real_image)
+
+        if tf.random.uniform(()) > 0.5:
+            input_image = tf.image.flip_left_right(input_image)
+            real_image = tf.image.flip_left_right(real_image)
+
+        return input_image, real_image
 
     @staticmethod
     def preprocess_data():
