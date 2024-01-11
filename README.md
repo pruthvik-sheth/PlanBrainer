@@ -1,8 +1,8 @@
 # PlanBrainer
 
-PlanBrainer is a project that I made to learn Generative Adversarial Networks from scratch. The aim of the project is to generate optimized interior floor plan layouts based on the user specified window/door position by employing Conditional Generative Adversarial Networks (CGANs).
+PlanBrainer is a project designed to understand and implement Generative Adversarial Networks (GANs) by creating optimized interior floor plans. The objective is to generate interior floor plan layouts based on user-defined window and door positions, utilizing Conditional GANs (CGANs).
 
-The documentation for the project is coming soon as I am rewriting the entire code from scratch in OOP paradigm. However, I have very briefly described the steps I have gone while constructing the dataset for this use case from scratch. As this was a quite niche category I didn't find any good datasets for this purpose so, I made my own from scratch and also to learn.
+While comprehensive documentation is underway, I'm currently rewriting the entire codebase in Object-Oriented Programming (OOP) paradigm. Given the niche nature of interior floor plan data, I crafted a custom dataset from scratch, both to address the lack of suitable existing datasets and as a hands-on learning experience which you can find below.
 
 ## Pre-processing Images
 
@@ -10,7 +10,8 @@ The documentation for the project is coming soon as I am rewriting the entire co
 
 First of all the website from which the images were scrapped contained some random floor plans which weren’t suitable for the style of floor plans I was going for.
 
-![[Pasted image 20240111124532.png]]
+![new](https://github.com/pruthvik-sheth/PlanBrainer/assets/80819203/78248783-e41b-4281-9d9a-20495856d71e)
+
 
 To address this issue I implemented a filtering mechanism while downloading the images
 To filter out such images (undesired images) I compared each and every image (after it is downloaded) to an random desired image.
@@ -171,7 +172,8 @@ Now, that the images were pre-processed it was time to generate the correspondin
 
 For eg:
 
-![[Pasted image 20240111125018.png]]
+![new1](https://github.com/pruthvik-sheth/PlanBrainer/assets/80819203/aa72768d-c6bc-4a3f-beac-16cf8365f296)
+
 
 Now, as the doors,windows as well as balconies were difficult to automate, automating boundary was quite simple and thus I did that in the first phase.
 
@@ -275,7 +277,7 @@ for i in range(len(s_images)):
 
 **Output:**
 
-![[Pasted image 20240111125621.png]]
+![4](https://github.com/pruthvik-sheth/PlanBrainer/assets/80819203/78d5792c-8e8c-4bd7-93a7-3a94e8ab0b87)
 
 Finally the dataset with **925** set of images was ready to be used and fed to the CGAN model.
 
